@@ -123,6 +123,7 @@ class StarryPainting extends StarryElement {
     if (!src || src === this._src) return;
     this._src = src;
     this.img = null;
+    this.say("loading image");
     const img = new Image();
     img.decoding = "async";
     img.crossOrigin = "anonymous";
