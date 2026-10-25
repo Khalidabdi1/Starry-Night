@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+shots/
+.claude/settings.local.json
+_t*.html

@@ -1,0 +1,29 @@
+{
+  "skill_name": "starry-night",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make me a landing-page hero for my astronomy newsletter in the style of The Starry Night: full screen, animated, with the title 'Night Notes' and a subscribe button. Plain HTML, no build step.",
+      "expected_output": "A standalone HTML page that imports kit/index.mjs and layers <starry-sky> at the back with transparent <starry-village> and/or <starry-cypress> above it, all at the same pixel value, with pointer events forwarded to the top layers. The title sits on a solid plate over the land, not over the great swirl, and the page works at 390 px with no horizontal scroll. It respects reduced motion (still frame), was captured at desktop and phone widths and with --no-webgl, and every PNG was read.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need a loading spinner for my React app that looks like a swirl from Van Gogh's Starry Night. It should be small (48px) and accessible.",
+      "expected_output": "Uses the StarryStar wrapper from kit/react/starry-night.tsx with variant=\"spinner\" (role status, label Loading) at 48px, transparent if over content. No new drawing code, no colours outside the ramp. It explains copying kit/ into the project and that the wrapper loads the element on the client only.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Bring my illustration to life like the Starry Night demo, the sky should flow but the buildings stay still. Here's the image: city.png",
+      "expected_output": "Uses <starry-painting src=\"city.png\"> and tunes horizon (where the land starts) and hold (darkness kept still) by capturing frames and checking that the buildings don't smear. It notes that the vortices come from the Starry Night model and offers to add or move vortices in a forked model to fit the new composition. It checks reduced motion (unflowed image) and the no-WebGL fallback (plain image).",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Add a new component to the starry-night kit: fireflies that drift through the sky and glow brighter when you hover.",
+      "expected_output": "A new kit/starry-fireflies.mjs extending StarryElement and following references/new-component.md: motion only from fieldAt, a Raster quantised to the ramp, seeded randomness, settle for the hover glow and burst for any click event, a calm still frame, a short true readout, keyboard support. It is exported from index.mjs, wrapped in react/starry-night.tsx and documented in references/components.md, and verified with scripts/capture.mjs including --reduced-motion.",
+      "files": []
+    }
+  ]
+}

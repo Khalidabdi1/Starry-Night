@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starry Night: Animation Kit</title>
+  <meta name="description" content="Seven pixel-art animation components drawn from Van Gogh's The Starry Night: a living sky shader, brush strokes in the wind, breathing stars, a swaying cypress, a village that lights up, words written in wind, and any painting brought to life. Zero dependencies, packaged as an agent skill.">
+  <meta property="og:title" content="Starry Night: Animation Kit">
+  <meta property="og:description" content="Pixel-art animation components drawn from Van Gogh's The Starry Night.">
+  <meta property="og:image" content="demo/og.jpg">
+  <meta name="theme-color" content="#050a1f">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect width='16' height='16' fill='%230b1b52'/><rect x='6' y='5' width='4' height='6' fill='%23f7c844'/><rect x='5' y='6' width='6' height='4' fill='%23f7c844'/><rect x='4' y='7' width='1' height='2' fill='%23eedc7f'/><rect x='11' y='7' width='1' height='2' fill='%23eedc7f'/><rect x='7' y='4' width='2' height='1' fill='%23eedc7f'/><rect x='7' y='11' width='2' height='1' fill='%23eedc7f'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="demo/demo.css">
+  <script type="module" src="skills/starry-night/kit/index.mjs"></script>
+  <script type="module" src="demo/demo.js"></script>
+</head>
+<body>
+  <a class="skip" href="#kit">Skip to the components</a>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Starry Night, home">
+      <starry-star variant="star" pixel="2" transparent no-tour aria-hidden="true" tabindex="-1"></starry-star>
+      <span>Starry&nbsp;Night</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#kit">Components</a>
+      <a href="#model">How it works</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/Khalidabdi1/Starry-Night">GitHub</a>
+    </nav>
+    <button class="motion" type="button" aria-pressed="false" data-motion>Pause motion</button>
+  </header>
+
+  <!-- Hero: three components layered into the painting. -->
+  <section class="hero" id="top" aria-label="An animated Starry Night scene">
+    <div class="scene" data-scene>
+      <starry-sky class="layer sky" pixel="3" focus="0.52"></starry-sky>
+      <starry-village class="layer village" transparent pixel="3" houses="24" tabindex="-1"></starry-village>
+      <starry-cypress class="layer cypress" transparent pixel="3" tongues="13" tabindex="-1"></starry-cypress>
+    </div>
+    <div class="hero-plate">
+      <p class="eyebrow">Fig 0 · Saint-Rémy, June 1889, re-drawn in pixels</p>
+      <h1>The sky is still moving.</h1>
+      <p class="lede">Seven pixel-art animation components grown from one model of Van Gogh's sky. Everything here is live.</p>
+      <div class="cta">
+        <button class="install" type="button" data-copy="npx skills add Khalidabdi1/Starry-Night">
+          <span class="prompt">$</span> npx skills add Khalidabdi1/Starry-Night
+          <span class="copied" aria-live="polite"></span>
+        </button>
+        <a class="ghost" href="#kit">See the components ↓</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span class="hint">move to stir the wind · click for light · tap the village</span>
+      <output class="readout" data-readout-for=".sky"></output>
+    </div>
+  </section>
+
+  <main id="kit">
+    <header class="section-head">
+      <p class="eyebrow">The kit</p>
+      <h2>Seven components, one wind.</h2>
+      <p>Each one is a custom element with no dependencies. Drop in the script and write the tag. Every figure below is live: try the pointer, the keyboard, and the motion switch at the top.</p>
+    </header>
+
+    <!-- Fig 1: the sky, with a live control panel -->
+    <figure class="fig wide" id="sky">
+      <div class="card">
+        <span class="fig-no">Fig 1</span><span class="fig-title">&lt;starry-sky&gt;</span>
+        <starry-sky id="sky-demo" pixel="3"></starry-sky>
+        <span class="hint">pointer stirs · click ripples · ← → pan</span>
+        <output class="readout" data-readout-for="#sky-demo"></output>
+      </div>
+      <figcaption>
+        <div>
+          <h3>A living sky</h3>
+          <p>A WebGL2 shader. Brush strokes come from smearing stipple noise along the wind, so every streak follows a real streamline. Bands spiral around six vortices placed where the painting's swirls are, ten stars breathe in ringed halos, and the result is snapped to an 8-colour palette with ordered dither on a coarse pixel grid. Without WebGL2 it paints one still frame on a 2D canvas.</p>
+        </div>
+        <form class="controls" data-controls="#sky-demo" aria-label="Sky settings">
+          <label>pixel <input type="range" name="pixel" min="2" max="8" step="1" value="3"><output></output></label>
+          <label>stroke <input type="range" name="stroke" min="0.2" max="3" step="0.1" value="1"><output></output></label>
+          <label>speed <input type="range" name="speed" min="0" max="3" step="0.1" value="1"><output></output></label>
+          <label>dither <input type="range" name="dither" min="0" max="2" step="0.1" value="0.9"><output></output></label>
+          <pre class="code" data-code></pre>
+        </form>
+      </figcaption>
+    </figure>
+
+    <!-- Fig 2: the painting comes alive -->
+    <figure class="fig wide" id="painting">
+      <div class="card">
+        <span class="fig-no">Fig 2</span><span class="fig-title">&lt;starry-painting&gt;</span>
+        <starry-painting id="painting-demo" src="skills/starry-night/assets/starry-night.webp" alt="The pixel-art Starry Night panorama, its sky slowly flowing around the swirls while the stars shimmer." pixel="1"></starry-painting>
+        <span class="hint">pointer stirs · click ripples</span>
+        <output class="readout" data-readout-for="#painting-demo"></output>
+      </div>
+      <figcaption>
+        <div>
+          <h3>The still image, flowing</h3>
+          <p>The pixel-art panorama above is a plain image. The component advects its sky along the same wind with a two-phase flow map: two samples half a cycle apart, crossfaded, so it loops forever without a reset. The cypress, hills and village are held still by a brightness mask and the horizon line. Sampling stays on the image's own pixel grid. Any image works, mapped into painting space.</p>
+        </div>
+        <pre class="code">&lt;starry-painting
+  src="starry-night.webp"
+  flow="1" horizon="0.64"&gt;
+&lt;/starry-painting&gt;</pre>
+      </figcaption>
+    </figure>
+
+    <!-- Fig 3: brush strokes -->
+    <figure class="fig wide" id="swirl">
+      <div class="card">
+        <span class="fig-no">Fig 3</span><span class="fig-title">&lt;starry-swirl&gt;</span>
+        <starry-swirl id="swirl-demo" count="2200"></starry-swirl>
+        <span class="hint">pointer paints a new swirl · space bursts light</span>
+        <output class="readout" data-readout-for="#swirl-demo"></output>
+      </div>
+      <figcaption>
+        <div>
+          <h3>Brush strokes in the wind</h3>
+          <p>Two thousand particles ride the model's field, the same function the sky shader smears noise along, and each leaves a short stroke that fades over 0.9 s. A stroke born near a swirl's glow, a star or the river of cloud paints straw and gold; the rest paint blues. Each stroke fades in and out over its life, so nothing pops.</p>
+        </div>
+        <pre class="code">&lt;starry-swirl count="2200"
+  trail="0.9"&gt;&lt;/starry-swirl&gt;</pre>
+      </figcaption>
+    </figure>
+
+    <!-- Fig 4: text -->
+    <figure class="fig wide" id="text">
+      <div class="card">
+        <span class="fig-no">Fig 4</span><span class="fig-title">&lt;starry-text&gt;</span>
+        <starry-text id="text-demo" text="Starry Night"></starry-text>
+        <span class="hint">hover to scatter · leave to gather · space toggles</span>
+        <output class="readout" data-readout-for="#text-demo"></output>
+      </div>
+      <figcaption>
+        <div>
+          <h3>Words written in wind</h3>
+          <p>Every lit pixel of the word gets a particle that calls it home. One value, scatter, settles between 0 and 1 without overshoot. Home pulls with a spring scaled by 1 − scatter, and the wind carries each particle with a strength scaled by scatter. So the word dissolves into the painting's swirls and pours back into its letters.</p>
+          <label class="text-input">Write your own <input type="text" value="Starry Night" maxlength="28" data-text-for="#text-demo" spellcheck="false"></label>
+        </div>
+        <pre class="code">&lt;starry-text text="Starry Night"
+  font="700 1em Georgia"&gt;&lt;/starry-text&gt;</pre>
+      </figcaption>
+    </figure>
+
+    <!-- Fig 5: stars, moon, spinner -->
+    <figure class="fig" id="stars">
+      <div class="trio">
+        <div class="card">
+          <span class="fig-no">Fig 5a</span><span class="fig-title">star</span>
+          <starry-star id="star-a"></starry-star>
+          <span class="hint">hover · click</span>
+          <output class="readout" data-readout-for="#star-a"></output>
+        </div>
+        <div class="card">
+          <span class="fig-no">Fig 5b</span><span class="fig-title">moon</span>
+          <starry-star id="star-b" variant="moon"></starry-star>
+          <span class="hint">hover · click</span>
+          <output class="readout" data-readout-for="#star-b"></output>
+        </div>
+        <div class="card">
+          <span class="fig-no">Fig 5c</span><span class="fig-title">spinner</span>
+          <starry-star id="star-c" variant="spinner"></starry-star>
+          <span class="hint">a loading state</span>
+          <output class="readout" data-readout-for="#star-c"></output>
+        </div>
+      </div>
+      <figcaption>
+        <div>
+          <h3>&lt;starry-star&gt;: stars, the moon, a curl</h3>
+          <p>A star's gold core sits in a straw halo, and its stippled rings breathe outward. Hover makes it swell, a critically damped settle that arrives without overshoot. A click sends a flare ring out, an envelope with a 60 ms attack and a 0.7 s decay. The spinner is the painting's small tight curl, turned into a loading state.</p>
+        </div>
+        <pre class="code">&lt;starry-star&gt;&lt;/starry-star&gt;
+&lt;starry-star variant="moon"&gt;&lt;/starry-star&gt;
+&lt;starry-star variant="spinner"&gt;&lt;/starry-star&gt;</pre>
+      </figcaption>
+    </figure>
+
+    <!-- Fig 6 + 7 -->
+    <div class="pair">
+      <figure class="fig" id="cypress">
+        <div class="card tall">
+          <span class="fig-no">Fig 6</span><span class="fig-title">&lt;starry-cypress&gt;</span>
+          <starry-cypress id="cypress-demo"></starry-cypress>
+          <span class="hint">hover · drag</span>
+          <output class="readout" data-readout-for="#cypress-demo"></output>
+        </div>
+        <figcaption>
+          <div>
+            <h3>A dark flame</h3>
+            <p>A broad flame body with twelve tongues licking off it, hatched along their length and drawn per pixel. The tree bends on an underdamped spring, so it overshoots once like a real trunk.</p>
+          </div>
+        </figcaption>
+      </figure>
+      <figure class="fig" id="village">
+        <div class="card">
+          <span class="fig-no">Fig 7</span><span class="fig-title">&lt;starry-village&gt;</span>
+          <starry-village id="village-demo" lights="on"></starry-village>
+          <span class="hint">click: lights ripple out from your click</span>
+          <output class="readout" data-readout-for="#village-demo"></output>
+        </div>
+        <figcaption>
+          <div>
+          <h3>Night falls on the village</h3>
+          <p>Hills, two rows of houses and the church spire are drawn back to front, so nearer roofs cover farther ones. Each window is its own lamp. Toggle the lights and they switch on in a cascade 45 ms apart, rippling out from where you clicked, then flicker. Chimney smoke leans with the wind.</p>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <section class="model" id="model">
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>One model, every motion.</h2>
+    </header>
+    <div class="model-grid">
+      <article>
+        <h3>The painting is the model</h3>
+        <p><code>model.mjs</code> measures the panorama: six Lamb–Oseen vortices, a solid core that blends into a 1/r swirl and fades with a Gaussian, placed on the great swirl, its lower lobe, the right swirl, the tight curl, the moon's halo and the left edge. It also holds ten stars, the moon, and a river of cloud that rises to the right. The same field exists once in JS and once in GLSL.</p>
+      </article>
+      <article>
+        <h3>Pixel art by construction</h3>
+        <p>Every component draws into a canvas a few times smaller than its box. The browser scales it up with crisp pixels, and every colour snaps to one 8-tone ramp sampled from the image, from cypress ink to star gold, with a 4×4 ordered dither. The shader and the 2D components can't drift apart in look.</p>
+      </article>
+      <article>
+        <h3>Calm, true motion</h3>
+        <p>Time-based steps with dt capped at 1/30 s. Pointers set targets that parts follow with exponential easing. Real springs where things are springy (the cypress), critically damped settles where they should arrive cleanly (scatter, swell), and attack/decay envelopes for one-off events (flares, ripples).</p>
+      </article>
+      <article>
+        <h3>Polite by default</h3>
+        <p>Each component stops when it scrolls offscreen or settles, and under reduced motion it goes to one still frame that still responds to input. An idle tour starts after 1.4 s and yields to the reader. Each element is focusable, has keyboard controls, and keeps a live readout in <code>aria-valuetext</code> and a <code>readout</code> event.</p>
+      </article>
+    </div>
+    <p class="credit">Techniques adapted from <a href="https://github.com/wheresryan22/anatomy">Anatomy</a>, a skill for crafted interactive figures: one pure model driving every number, framed cards with a live readout, envelopes that never pop, idle tours, and verifying by screenshot.</p>
+  </section>
+
+  <section class="install-section" id="install">
+    <header class="section-head">
+      <p class="eyebrow">Install</p>
+      <h2>Use it as a skill, or as tags.</h2>
+    </header>
+    <div class="install-grid">
+      <div class="card plain">
+        <h3>As an agent skill</h3>
+        <p>It works with skills.sh, so your agent learns the palette, the model and the motion rules, and can build new Starry Night animations with the kit.</p>
+        <pre class="code">npx skills add Khalidabdi1/Starry-Night</pre>
+        <p class="small">Then ask: <em>“make a Starry Night loading screen for my app”</em>.</p>
+      </div>
+      <div class="card plain">
+        <h3>As web components</h3>
+        <p>Copy <code>skills/starry-night/kit/</code> into your site. No build step, no dependencies.</p>
+        <pre class="code">&lt;script type="module"
+  src="kit/index.mjs"&gt;&lt;/script&gt;
+
+&lt;starry-sky&gt;&lt;/starry-sky&gt;</pre>
+      </div>
+      <div class="card plain">
+        <h3>In React or Next.js</h3>
+        <p>Typed wrappers that load the elements on the client only.</p>
+        <pre class="code">import { StarrySky } from
+  "./kit/react/starry-night";
+
+&lt;StarrySky speed={1.2}
+  onReadout={(t) =&gt; …} /&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <starry-star variant="spinner" pixel="2" no-tour aria-hidden="true" tabindex="-1"></starry-star>
+    <p>After Vincent van Gogh, <em>The Starry Night</em>, 1889 (Museum of Modern Art, New York). The pixel-art panorama and the code are in the <a href="https://github.com/Khalidabdi1/Starry-Night">repository</a>, MIT licensed.</p>
+  </footer>
+</body>
+</html>

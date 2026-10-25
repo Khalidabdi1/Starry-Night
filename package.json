@@ -1,0 +1,15 @@
+{
+  "name": "starry-night",
+  "version": "1.0.0",
+  "description": "Pixel-art animation components drawn from Van Gogh's The Starry Night, packaged as an agent skill.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/Khalidabdi1/Starry-Night.git" },
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "check": "node tools/check.mjs",
+    "capture": "node skills/starry-night/scripts/capture.mjs http://localhost:8000/ --out shots/desktop.png"
+  },
+  "engines": { "node": ">=22" }
+}
